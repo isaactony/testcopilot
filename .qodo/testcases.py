@@ -17,6 +17,24 @@ def parse_log_entry(entry: str):
     return timestamp, level, message
 
   
-
-
     
+
+#test cases
+def test_parse_log_entry():
+    # Test case 1: Valid log entry
+    entry = "2025-06-02 09:00:00 - ERROR - failed to connect"
+    expected = (datetime(2025, 6, 2, 9, 0, 0), "ERROR", "failed to connect")
+    assert parse_log_entry(entry) == expected
+
+    # Test case 2: Another valid log entry
+    entry = "2023-10-15 14:30:45 - INFO - user logged in"
+    expected = (datetime(2023, 10, 15, 14, 30, 45), "INFO", "user logged in")
+    assert parse_log_entry(entry) == expected
+
+    # Test case 3: Invalid log entry format
+    try:
+        parse_log_entry("Invalid log entry")
+    except ValueError as e:
+        assert str(e) == "Log entry does not match expected format."
+    
+    print("All test cases passed!")
